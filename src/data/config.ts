@@ -1,7 +1,8 @@
 import 'phaser'
-import { TitleScene } from "./../scenes/TitleScene";
-import { Loader } from '../scenes/Loader';
-import { Booter } from '../scenes/Booter';
+import { ControlsManager } from "./../utils/ControlsManager";
+import TitleScene from "./../scenes/TitleScene";
+import Loader from '../scenes/Loader';
+import Booter from '../scenes/Booter';
 
 export default {
     title: "phaser3-starter",
@@ -30,5 +31,5 @@ export default {
             debug: false
         }
     },
-    scene: [Booter, Loader, TitleScene]
+    scene: [Booter, Loader, TitleScene, ControlsManager]
 }

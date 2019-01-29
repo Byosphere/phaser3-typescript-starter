@@ -1,5 +1,4 @@
-import { getNavigatorLanguage } from "./../utils/helpers";
-export class Booter extends Phaser.Scene {
+export default class Booter extends Phaser.Scene {
 
     constructor() {
         super({ key: "Booter" });

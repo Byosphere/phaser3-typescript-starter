@@ -1,4 +1,4 @@
-export class Loader extends Phaser.Scene {
+export default class Loader extends Phaser.Scene {
     private phaserSprite: Phaser.GameObjects.Sprite;
 
     constructor() {
@@ -21,11 +21,11 @@ export class Loader extends Phaser.Scene {
 
         loader.play('loading');
 
-        this.load.on('progress', (v) => {
+        this.load.on('progress', (v: number) => {
             text.setText(this.game.translate('loader.loading') + ' ' + v * 100 + '/100');
         });
 
-        this.load.on('complete', (v) => {
+        this.load.on('complete', (v: number) => {
             loader.destroy();
             text.destroy();
         });
@@ -41,11 +41,11 @@ export class Loader extends Phaser.Scene {
     }
 
     loadSpritesheets(): void {
-
+        // ADD SPRITESHEETS HERE
     }
 
     loadAudio() {
-
+        // ADD AUDIO HERE
     }
 
     create(): void {
@@ -70,6 +70,7 @@ export class Loader extends Phaser.Scene {
                                 this.cameras.main.fadeOut(500, 255, 255, 255);
                                 this.cameras.main.on('camerafadeoutcomplete', () => {
                                     this.scene.start('TitleScene');
+                                    this.scene.start('ControlsManager');
                                 }, this);
                             }
                         });
