@@ -8,14 +8,15 @@ export default class TitleScene extends Phaser.Scene implements ControlsInterfac
 
     preload(): void {
         let controlsManager: any = this.scene.get('ControlsManager');
-        controlsManager.setCallbackContext(this);
+        controlsManager.setCallbackContext(this, this);
     }
 
     create(): void {
-
+        let loader = this.add.sprite(200, 200, 'loader').setInteractive();
     }
+    
     actionButtonReleased(playerNum: number): void {
-        
+        throw new Error("Method not implemented.");
     }
     upButtonReleased(playerNum: number): void {
         throw new Error("Method not implemented.");
@@ -48,6 +49,12 @@ export default class TitleScene extends Phaser.Scene implements ControlsInterfac
         throw new Error("Method not implemented.");
     }
     cancelButtonDown(playerNum: number): void {
+        throw new Error("Method not implemented.");
+    }
+    mouseOver(gameObject: Phaser.GameObjects.GameObject) {
+        throw new Error("Method not implemented.");
+    }
+    click(gameObject: Phaser.GameObjects.GameObject): void {
         throw new Error("Method not implemented.");
     }
 }

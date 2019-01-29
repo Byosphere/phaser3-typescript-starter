@@ -1,4 +1,5 @@
 import { PAD_A, PAD_B, PAD_UP, PAD_RIGHT, PAD_LEFT, PAD_DOWN } from "./Constants";
+import { Scene } from "phaser";
 
 interface PlayerInput {
     code: number
@@ -11,6 +12,7 @@ export class ControlsManager extends Phaser.Scene {
     private gamepads: Gamepad[] = [];
     private debug: boolean = true;
     private callbackContext: ControlsInterface;
+    private parentScene: Scene;
     private p1_action: PlayerInput;
     private p1_cancel: PlayerInput;
     private p1_up: PlayerInput;
@@ -26,11 +28,11 @@ export class ControlsManager extends Phaser.Scene {
 
     constructor() {
         super({ key: "ControlsManager" });
-
     }
 
-    public setCallbackContext(context: ControlsInterface) {
+    public setCallbackContext(context: ControlsInterface, scene: Scene) {
         this.callbackContext = context;
+        this.parentScene = scene;
     }
 
     create() {
@@ -60,8 +62,11 @@ export class ControlsManager extends Phaser.Scene {
             this.onControllerButtonReleased(button.index, playerNum);
         });
 
-        this.input.keyboard.on('keydown', this.onKeyboardButtonDown);
-        this.input.keyboard.on('keyup', this.onKeyboardButtonReleased);
+        this.input.keyboard.on('keydown', this.onKeyboardButtonDown, this);
+        this.input.keyboard.on('keyup', this.onKeyboardButtonReleased, this);
+
+        this.parentScene.input.on('gameobjectover', this.onMouseOver, this);
+        this.parentScene.input.on('gameobjectup', this.onClick, this);
     }
 
     onControllerButtonDown(button: number, playerNum: number) {
@@ -207,9 +212,19 @@ export class ControlsManager extends Phaser.Scene {
                 console.warn('Button released unknown : ' + button);
         }
     }
+
+    onClick(pointer: Phaser.Input.Pointer, gameObject: Phaser.GameObjects.GameObject) {
+        this.callbackContext.click(gameObject);
+    }
+    onMouseOver(pointer: Phaser.Input.Pointer, gameObject: Phaser.GameObjects.GameObject) {
+        this.callbackContext.mouseOver(gameObject);
+    }
 }
 
 export interface ControlsInterface {
+
+    mouseOver(gameObject: Phaser.GameObjects.GameObject): any;
+    click(gameObject: Phaser.GameObjects.GameObject): void;
 
     actionButtonReleased(playerNum?: number): void;
     upButtonReleased(playerNum?: number): void;
