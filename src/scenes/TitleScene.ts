@@ -9,5 +9,6 @@ export class TitleScene extends Phaser.Scene {
     }
 
     create(): void {
+        
     }
 }

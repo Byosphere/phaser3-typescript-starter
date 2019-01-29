@@ -1,5 +1,7 @@
 import 'phaser'
+import { TitleScene } from "./../scenes/TitleScene";
 import { Loader } from '../scenes/Loader';
+import { Booter } from '../scenes/Booter';
 
 export default {
     title: "phaser3-starter",
@@ -28,5 +30,5 @@ export default {
             debug: false
         }
     },
-    scene: [Loader]
+    scene: [Booter, Loader, TitleScene]
 }
