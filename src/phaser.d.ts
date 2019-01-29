@@ -4371,6 +4371,9 @@ declare namespace Phaser {
          */
         headlessStep(time: number, delta: number): void;
 
+
+        public translate(key: string): string;
+
         /**
          * Called automatically by the Visibility Handler.
          * This will pause the main loop and then emit a pause event.

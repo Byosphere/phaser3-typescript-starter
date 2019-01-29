@@ -8,7 +8,7 @@ export class Loader extends Phaser.Scene {
 
     preload(): void {
         let loader = this.add.sprite(0, this.game.canvas.height - 40, 'loader');
-        let text = this.add.text(0, loader.y - (loader.height / 2), 'Loading... 0/100', { fontFamily: 'Pixel', fontSize: 20 });
+        let text = this.add.text(0, loader.y - (loader.height / 2), this.game.translate('loader.loading') + ' 0/100', { fontFamily: 'Pixel', fontSize: 20 });
         loader.x = this.game.canvas.width - text.width - 60;
         text.x = this.game.canvas.width - text.width - 30;
 
@@ -22,7 +22,7 @@ export class Loader extends Phaser.Scene {
         loader.play('loading');
 
         this.load.on('progress', (v) => {
-            text.setText('Loading... ' + v * 100 + '/100');
+            text.setText(this.game.translate('loader.loading') + ' ' + v * 100 + '/100');
         });
 
         this.load.on('complete', (v) => {
