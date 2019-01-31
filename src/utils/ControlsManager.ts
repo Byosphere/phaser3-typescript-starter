@@ -66,6 +66,7 @@ export class ControlsManager extends Phaser.Scene {
         this.input.keyboard.on('keyup', this.onKeyboardButtonReleased, this);
 
         this.parentScene.input.on('gameobjectover', this.onMouseOver, this);
+        this.parentScene.input.on('gameobjectout', this.onMouseOut, this);
         this.parentScene.input.on('gameobjectup', this.onClick, this);
     }
 
@@ -219,11 +220,16 @@ export class ControlsManager extends Phaser.Scene {
     onMouseOver(pointer: Phaser.Input.Pointer, gameObject: Phaser.GameObjects.GameObject) {
         this.callbackContext.mouseOver(gameObject);
     }
+
+    onMouseOut(pointer: Phaser.Input.Pointer, gameObject: Phaser.GameObjects.GameObject) {
+        this.callbackContext.mouseOut(gameObject);
+    }
 }
 
 export interface ControlsInterface {
 
-    mouseOver(gameObject: Phaser.GameObjects.GameObject): any;
+    mouseOver(gameObject: Phaser.GameObjects.GameObject): void;
+    mouseOut(gameObject: Phaser.GameObjects.GameObject): void;
     click(gameObject: Phaser.GameObjects.GameObject): void;
 
     actionButtonReleased(playerNum?: number): void;

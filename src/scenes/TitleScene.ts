@@ -57,4 +57,7 @@ export default class TitleScene extends Phaser.Scene implements ControlsInterfac
     click(gameObject: Phaser.GameObjects.GameObject): void {
         throw new Error("Method not implemented.");
     }
+    mouseOut(gameObject: Phaser.GameObjects.GameObject): void {
+        throw new Error("Method not implemented.");
+    }
 }
