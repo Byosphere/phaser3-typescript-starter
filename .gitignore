@@ -10,5 +10,5 @@ node_modules
 *.tsx
 yarn.lock
 package-lock.json
-src/assets
+assets
 public

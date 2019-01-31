@@ -70,7 +70,6 @@ export default class Loader extends Phaser.Scene {
                                 this.cameras.main.fadeOut(500, 255, 255, 255);
                                 this.cameras.main.on('camerafadeoutcomplete', () => {
                                     this.scene.start('TitleScene');
-                                    this.scene.start('ControlsManager');
                                 }, this);
                             }
                         });

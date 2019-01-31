@@ -7,12 +7,13 @@ export default class TitleScene extends Phaser.Scene implements ControlsInterfac
     }
 
     preload(): void {
+        this.scene.launch('ControlsManager');
         let controlsManager: any = this.scene.get('ControlsManager');
         controlsManager.setCallbackContext(this, this);
     }
 
     create(): void {
-        let loader = this.add.sprite(200, 200, 'loader').setInteractive();
+
     }
     
     actionButtonReleased(playerNum: number): void {
